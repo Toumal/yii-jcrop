@@ -66,8 +66,6 @@ class jCropWidget extends CWidget {
 
 		$assetPrefix = Yii::app()->assetManager->publish(dirname(__FILE__).'/resources', true, 0, defined('YII_DEBUG'));
 
-		Yii::app()->clientScript->registerScriptFile(Yii::app()->assetManager->publish(Yii::getPathOfAlias('application.components.assets').'/sfanimate.class.js'));
-
 		Yii::app()->clientScript->registerScriptFile($assetPrefix.'/jquery.Jcrop.min.js');
 		Yii::app()->clientScript->registerScriptFile($assetPrefix.'/jquery.color.js');
 		Yii::app()->clientScript->registerCssFile($assetPrefix.'/jquery.Jcrop.css');
