@@ -1,1 +1,1 @@
-<?php echo CHtml::image($url, $alt, $htmlOptions);
+<?php echo CHtml::image($url, $alt, $htmlOptions);?>

@@ -40,6 +40,25 @@ class jCropWidget extends CWidget {
 	 */
 	public $formElementHeight;
 
+	
+	/**
+	 * The image id of a preview box
+	 * @var string $previewId
+	 */
+	public $previewId;
+
+	/**
+	 * Preview box width
+	 * @var int $previewWidth
+	 */
+	public $previewWidth;
+
+	/**
+	 * Preview box height
+	 * @var int $previewHeight
+	 */
+	public $previewHeight;
+	
 	/**
 	 * key => value options that are rendered into the <img> tag
 	 * @var array
@@ -77,6 +96,12 @@ class jCropWidget extends CWidget {
 		} else {
 			$id = 'yii-jcrop';
 		}
+		if (!$this->previewId) {
+			$this->previewId = $id.'-preview';
+			$this->previewWidth = 100;
+			$this->previewHeight = 100;
+		}
+		
 		$id.= '-'.$count;
 		$this->htmlOptions['id'] = $id;
 
@@ -93,6 +118,16 @@ EOF;
 				jQuery('#{$this->formElementY}').val(c.y);
 				jQuery('#{$this->formElementWidth}').val(c.w);
 				jQuery('#{$this->formElementHeight}').val(c.h);
+				var rx = {$this->previewWidth} / c.w;
+				var ry = {$this->previewHeight} / c.h;
+				if ($('#{$this->previewId}') != undefined) {
+					$('#{$this->previewId}').css({
+						width: Math.round(rx * $('#{$id}').width() ) + 'px',
+						height: Math.round(ry * $('#{$id}').height()) + 'px',
+						marginLeft: '-' + Math.round(rx * c.x) + 'px',
+						marginTop: '-' + Math.round(ry * c.y) + 'px'
+					}); 
+				}
 			};
 EOF;
 
